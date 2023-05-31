@@ -742,7 +742,7 @@ def load_coref_from_misc(doc, strict=True):
             for node in mention._words:
                 node._mentions.sort()
     strict_entities = filter(lambda ent: ent._mentions is not None, entities.values())
-    doc._eid_to_entity = {c._eid: c for c in sorted(strict_entitites)}
+    doc._eid_to_entity = {c._eid: c for c in sorted(strict_entities)}
 
 
 def store_coref_to_misc(doc):
