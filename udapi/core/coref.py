@@ -735,7 +735,8 @@ def load_coref_from_misc(doc, strict=True):
     # In Python 3.7+ (3.6+ in CPython), dicts are guaranteed to be insertion order.
     for entity in entities.values():
         if not entity._mentions:
-            _error(f"Entity {entity.eid} referenced in SplitAnte or Bridge, but not defined with Entity", strict)
+            continue
+#             _error(f"Entity {entity.eid} referenced in SplitAnte or Bridge, but not defined with Entity", strict)
         entity._mentions.sort()
         for mention in entity._mentions:
             for node in mention._words:
