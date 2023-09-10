@@ -133,7 +133,20 @@ class Node(object):
         because `ord` is the word order within each sentence.
         For comparing the word order across trees, use `nodeA.precedes(nodeB)` instead.
         """
-        return self._ord < other._ord
+
+        def get_token_multisentence_position(token):
+            sent_ind, *in_sent_ind = token.address().split('#')
+            if sent_ind == '?':
+                sent_ind = 0
+            
+            if not in_sent_ind:
+                in_sent_ind = 0
+            else:
+                in_sent_ind = in_sent_ind[0]
+
+            return float(sent_ind), float(in_sent_ind)
+
+        return get_token_multisentence_position(self) < get_token_multisentence_position(other)
 
     @property
     def udeprel(self):
