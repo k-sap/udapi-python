@@ -602,8 +602,9 @@ def load_coref_from_misc(doc, strict=True):
                     raise ValueError(f"Mention {chunk} closed at {node}, but not opened.")
                 last_word = mention.words[-1]
                 if node.root is not last_word.root:
+                    pass
                     # TODO cross-sentence mentions
-                    raise ValueError(f"Cross-sentence mentions not supported yet: {chunk} at {node}")
+                    #raise ValueError(f"Cross-sentence mentions not supported yet: {chunk} at {node}")
                 for w in node.root.descendants_and_empty:
                     if last_word.precedes(w):
                         mention._words.append(w)
